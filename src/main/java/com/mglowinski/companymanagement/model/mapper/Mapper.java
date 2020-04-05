@@ -22,7 +22,7 @@ public interface Mapper<F, T> {
                 fromPage.getNumber(),
                 fromPage.getSize(),
                 fromPage.getTotalPages(),
-                fromPage.getNumberOfElements(),
+                fromPage.getTotalElements(),
                 fromPage.isLast(),
                 mapAll(fromPage.getContent())
         );
