@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -25,6 +26,9 @@ public class Employee {
     @OneToOne
     @JoinColumn
     private Address address;
+
+    @OneToMany(mappedBy = "employee")
+    private List<Task> tasks;
 
     @ManyToMany
     @JoinTable(

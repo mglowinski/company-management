@@ -3,6 +3,7 @@ package com.mglowinski.companymanagement.model.entity;
 import com.mglowinski.companymanagement.model.TaskLevel;
 import com.mglowinski.companymanagement.model.TaskStatus;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Data
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Task {
@@ -19,9 +21,13 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
-    private TaskLevel taskLevel;
-    private TaskStatus taskStatus;
+    private TaskLevel level;
+    private TaskStatus status;
 
     @OneToMany(mappedBy = "task")
     private List<TaskAdditionalInfo> taskAdditionalInfos;
+
+    @ManyToOne
+    @JoinColumn
+    private Employee employee;
 }
