@@ -15,7 +15,6 @@ public class TaskCreationMapper implements Mapper<TaskCreationDTO, Task> {
                 .description(from.getDescription())
                 .level(from.getLevel())
                 .status(from.getStatus())
-                .employee(from.getEmployee())
                 .taskAdditionalInfos(Collections.emptyList())
                 .build();
     }
