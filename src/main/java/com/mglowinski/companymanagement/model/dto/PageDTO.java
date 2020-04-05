@@ -12,7 +12,7 @@ public class PageDTO<T> {
     private int page;
     private int size;
     private int totalPages;
-    private int totalElements;
+    private long totalElements;
     private boolean last;
     private List<T> elements;
 }
