@@ -18,14 +18,14 @@ import org.springframework.stereotype.Service;
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
-    private final BaseSpecification<Employee, EmployeeSearchQuery> userListSpecification;
+    private final BaseSpecification<Employee, EmployeeSearchQuery> employeeListSpecification;
     private final Mapper<Employee, EmployeeDTO> employeeMapper;
 
     @Override
     public PageDTO<EmployeeDTO> getEmployees(EmployeeSearchQuery employeeSearchQuery,
                                              Pageable pageable) {
         Page<Employee> employeePage = employeeRepository.findAll(
-                userListSpecification.getFilter(employeeSearchQuery), pageable);
+                employeeListSpecification.getFilter(employeeSearchQuery), pageable);
         return employeeMapper.mapPage(employeePage);
     }
 
