@@ -1,5 +1,6 @@
 package com.mglowinski.companymanagement.service.impl;
 
+import com.mglowinski.companymanagement.model.TaskStatus;
 import com.mglowinski.companymanagement.model.dto.PageDTO;
 import com.mglowinski.companymanagement.model.dto.TaskCreationDTO;
 import com.mglowinski.companymanagement.model.dto.TaskDTO;
@@ -21,8 +22,8 @@ public class TaskServiceImpl implements TaskService {
     private final Mapper<TaskCreationDTO, Task> taskCreationMapper;
 
     @Override
-    public PageDTO<TaskDTO> getTasks(Pageable pageable) {
-        Page<Task> tasks = taskRepository.findAll(pageable);
+    public PageDTO<TaskDTO> getTasks(TaskStatus taskStatus, Pageable pageable) {
+        Page<Task> tasks = taskRepository.findAllByStatus(taskStatus, pageable);
         return taskMapper.mapPage(tasks);
     }
 

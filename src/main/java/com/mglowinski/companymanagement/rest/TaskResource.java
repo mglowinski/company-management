@@ -1,5 +1,6 @@
 package com.mglowinski.companymanagement.rest;
 
+import com.mglowinski.companymanagement.model.TaskStatus;
 import com.mglowinski.companymanagement.model.dto.PageDTO;
 import com.mglowinski.companymanagement.model.dto.TaskCreationDTO;
 import com.mglowinski.companymanagement.model.dto.TaskDTO;
@@ -18,8 +19,9 @@ public class TaskResource {
     private final TaskService taskService;
 
     @GetMapping
-    public ResponseEntity<PageDTO<TaskDTO>> getTasks(Pageable pageable) {
-        return ResponseEntity.status(HttpStatus.OK).body(taskService.getTasks(pageable));
+    public ResponseEntity<PageDTO<TaskDTO>> getTasks(@RequestParam(required = false) TaskStatus status,
+                                                     Pageable pageable) {
+        return ResponseEntity.status(HttpStatus.OK).body(taskService.getTasks(status, pageable));
     }
 
     @PostMapping
