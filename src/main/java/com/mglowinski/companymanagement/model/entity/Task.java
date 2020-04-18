@@ -20,8 +20,13 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String description;
+
+    @Enumerated(EnumType.STRING)
     private TaskLevel level;
+
+    @Enumerated(EnumType.STRING)
     private TaskStatus status;
 
     @OneToMany(mappedBy = "task")
