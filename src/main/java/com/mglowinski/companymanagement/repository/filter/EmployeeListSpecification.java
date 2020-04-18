@@ -6,7 +6,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserListSpecification implements BaseSpecification<Employee, EmployeeSearchQuery> {
+public class EmployeeListSpecification implements BaseSpecification<Employee, EmployeeSearchQuery> {
 
     @Override
     public Specification<Employee> getFilter(EmployeeSearchQuery employeeSearchQuery) {
@@ -15,14 +15,14 @@ public class UserListSpecification implements BaseSpecification<Employee, Employ
     }
 
     private Specification<Employee> firstNameContains(String firstName) {
-        return employeeAttributeContains("firstName", firstName);
+        return attributeContains("firstName", firstName);
     }
 
     private Specification<Employee> lastNameContains(String lastName) {
-        return employeeAttributeContains("lastName", lastName);
+        return attributeContains("lastName", lastName);
     }
 
-    private Specification<Employee> employeeAttributeContains(String attribute, String value) {
+    private Specification<Employee> attributeContains(String attribute, String value) {
         return (root, query, cb) -> {
             if (value == null) {
                 return null;
