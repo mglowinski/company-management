@@ -13,6 +13,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
+
 @Service
 @RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
@@ -27,6 +29,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         Page<Employee> employeePage = employeeRepository.findAll(
                 employeeListSpecification.getFilter(employeeSearchQuery), pageable);
         return employeeMapper.mapPage(employeePage);
+    }
+
+    @Override
+    public EmployeeDTO getEmployee(Long id) {
+        return employeeRepository.findById(id)
+                .map(employeeMapper::map)
+                .orElseThrow(() -> new EntityNotFoundException("Employee not found with given id"));
     }
 
 }

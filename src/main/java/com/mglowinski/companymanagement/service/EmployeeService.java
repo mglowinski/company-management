@@ -6,5 +6,8 @@ import com.mglowinski.companymanagement.model.dto.PageDTO;
 import org.springframework.data.domain.Pageable;
 
 public interface EmployeeService {
+
     PageDTO<EmployeeDTO> getEmployees(EmployeeSearchQuery employeeSearchQuery, Pageable pageable);
+
+    EmployeeDTO getEmployee(Long id);
 }

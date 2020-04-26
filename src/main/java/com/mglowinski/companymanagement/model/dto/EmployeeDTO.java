@@ -5,6 +5,7 @@ import com.mglowinski.companymanagement.model.entity.Role;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -17,4 +18,5 @@ public class EmployeeDTO {
     private String email;
     private Address address;
     private Set<Role> roles;
+    private List<EmployeeTaskDTO> tasks;
 }

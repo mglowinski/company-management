@@ -4,6 +4,7 @@ import com.mglowinski.companymanagement.model.TaskStatus;
 import com.mglowinski.companymanagement.model.dto.PageDTO;
 import com.mglowinski.companymanagement.model.dto.TaskCreationDTO;
 import com.mglowinski.companymanagement.model.dto.TaskDTO;
+import com.mglowinski.companymanagement.model.dto.TaskEmployeeAssignDTO;
 import com.mglowinski.companymanagement.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/tasks")
+@RequestMapping("/tasks")
 @RequiredArgsConstructor
 public class TaskResource {
 
@@ -21,12 +22,21 @@ public class TaskResource {
     @GetMapping
     public ResponseEntity<PageDTO<TaskDTO>> getTasks(@RequestParam(required = false) TaskStatus status,
                                                      Pageable pageable) {
-        return ResponseEntity.status(HttpStatus.OK).body(taskService.getTasks(status, pageable));
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(taskService.getTasks(status, pageable));
     }
 
     @PostMapping
     public ResponseEntity<TaskDTO> createTask(@RequestBody TaskCreationDTO taskCreationDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(taskService.createTask(taskCreationDTO));
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(taskService.createTask(taskCreationDTO));
+    }
+
+    @PostMapping("/{id}/employee")
+    public ResponseEntity<TaskDTO> assignEmployee(@PathVariable Long id,
+                                                  @RequestBody TaskEmployeeAssignDTO taskEmployeeAssignDTO) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(taskService.assignEmployee(id, taskEmployeeAssignDTO));
     }
 
 }

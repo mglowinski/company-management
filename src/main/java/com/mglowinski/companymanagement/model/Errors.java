@@ -5,7 +5,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public enum Errors {
 
-    ENUM_INVALID_TYPE(400, "Invalid enum value");
+    ENUM_INVALID_TYPE(400, "Invalid enum value"),
+    RESOURCE_NOT_FOUND(404, "Resource not found");
 
     private final int code;
     private final String message;
